@@ -17,7 +17,7 @@ class TaskController extends Controller {
 		parent::__construct();
 		$this->user = new User;
 		if (!$this->user->isLoggedIn()) {
-			Redirect::to('login');
+			Redirect::to('/login');
 		}
 	}
 

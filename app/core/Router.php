@@ -34,6 +34,9 @@ class Router {
 		//Setting methodName
 		if (isset($this->url[1])) {
 			//check whether is route to url method
+			if ($this->method == Config::get('default/method')) {
+				$this->method = $this->url[1];
+			}
 			if (array_key_exists($this->controller, $this->routes)) {
 				foreach ($this->routes[$this->controller] as $pattern => $method) {
 					//Delimeters should be ~ because of possible "/" in found string
@@ -42,9 +45,6 @@ class Router {
 						break;
 					}
 				}
-			}
-			if ($this->method == Config::get('default/method')) {
-				$this->method = $this->url[1];
 			}
 			unset($this->url[1]);
 		} else if (array_key_exists($this->controller, $this->routes) && array_key_exists('default', $this->routes[$this->controller])) {
@@ -64,9 +64,9 @@ class Router {
 			self::page404();
 		}
 		if (method_exists($this->controller, $this->method)) {
-			call_user_func_array([$this->controller, $this->method], $this->parameters);	
+			return call_user_func_array([$this->controller, $this->method], $this->parameters);	
 		} else {
-			self::page404();
+			return self::page404();
 		}
 	}
 
