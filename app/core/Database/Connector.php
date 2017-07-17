@@ -21,9 +21,6 @@ class Connector extends \PDO {
 			exit();
 		}
 	}
-	private function __clone() {
-		//denied cloning
-	}
 }
 
 ?>

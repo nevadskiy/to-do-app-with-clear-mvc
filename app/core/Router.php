@@ -21,6 +21,9 @@ class Router {
 				if (preg_match('~/~', $this->routes[$this->url[0]])) {
 					$matches = explode('/', $this->routes[$this->url[0]]);
 					$this->controller = $matches[0];
+					if (isset($this->url[1])) {
+						$this->url[2] = $this->url[1];
+					}
 					$this->url[1] = $matches[1];
 				} else {
 					$this->controller = $this->routes[$this->url[0]];
@@ -52,8 +55,9 @@ class Router {
 		}
 
 		//Setting right controller name and action name
-		$this->controller = '\App\controllers\\' . ucfirst($this->controller) . 'Controller';
+		$this->controller = '\\App\controllers\\' . ucfirst($this->controller) . 'Controller';
 		$this->method .= 'Action';
+
 		//Get a parameters	
 		$this->parameters = $this->url ? array_values($this->url) : [];
 
@@ -66,6 +70,8 @@ class Router {
 		if (method_exists($this->controller, $this->method)) {
 			return call_user_func_array([$this->controller, $this->method], $this->parameters);	
 		} else {
+			echo $this->method;
+			die();
 			return self::page404();
 		}
 	}

@@ -2,7 +2,7 @@
 
 $GLOBALS['config'] = [
 	'path' => [
-		'views' => __DIR__ . '/app/views/'
+		'views' => __DIR__ . '/app/views'
 	],
 
 	'database' => [
@@ -24,6 +24,12 @@ $GLOBALS['config'] = [
 		'controller' => 'task',
 		'method' => 'index',
 	],
+	'pageTitles' => [
+		'default' => 'To do application',
+		'login' => 'Login',
+		'register' => 'Register',
+	],
+
 	'routes' => [
 		/**
 		 * 1. redirect controller:
@@ -47,20 +53,6 @@ $GLOBALS['config'] = [
 		'logout' => 'auth/logout',
 		'task' => [
 			'[0-9]' => 'index',
-		],
-		// 'home' => [
-		// 	'[0-9]' => 'index'
-		// ],
-		// 'product' => [
-		// 	'[0-9]' => 'index'
-		// ],
-		//  'catalog' => [
-		//  	'[0-9]' => 'category'
-		// ],
-		// 'logisn' => 'home',
-		// 'home' => [
-		// 	'asds' => 'asdfasdfasdf'
-		// ],
-		// 'contact' => 'main/contact'
+		]
 	]
 ];

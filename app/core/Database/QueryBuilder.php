@@ -109,9 +109,9 @@ class QueryBuilder {
 	/**
 	 * PUBLIC FUNCTION BELOW
 	 */
-	public function sql($sql) {
+	public function sql($sql, $fields) {
 		$query = $this->db->prepare($sql);
-		$query->execute();
+		$query->execute($fields);
 		if (explode(' ', $sql)[0] == 'SELECT') {
 			if ($query->rowCount()) {
 				return $query->fetchAll(\PDO::FETCH_OBJ);
